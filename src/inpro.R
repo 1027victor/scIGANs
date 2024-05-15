@@ -34,7 +34,8 @@ upSample_zero <- function(mtx, rowNum){
   if(mRows>=rowNum){
     return(mtx)
   } else{
-    zero_matrix = matrix(rep(0, mCols*(rowNum-mRows)),rowNum-mRows, mCols)
+     zero_matrix = matrix(rep(-1, mCols*(rowNum-mRows)),rowNum-mRows, mCols)	  
+    # zero_matrix = matrix(rep(0, mCols*(rowNum-mRows)),rowNum-mRows, mCols)
 	colnames(zero_matrix) = colnames(mtx)
     return(rbind(mtx,zero_matrix))
   }
