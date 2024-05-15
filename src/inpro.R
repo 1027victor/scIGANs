@@ -100,6 +100,7 @@ if(is.null(label) || is.na(label)){## if no label file provided, then run pre-cl
 }
 # 覆盖式写入数据
 write(fig_h, paste(tmp,"/args",sep = ""), append =F)
+# 追加写入数据
 write(ncls, paste(tmp,"/args",sep = ""), append =T)
 write(label, paste(tmp,"/args",sep = ""), append =T)
 
