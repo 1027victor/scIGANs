@@ -75,15 +75,22 @@ gcm <- upSample_zero(d, fig_h^2)
 # 计算每列的最大值和最小值，并忽略缺失值
 reads_max_cell <- apply(gcm, 2, max, na.rm = TRUE) # 每列的最大值
 reads_min_cell <- apply(gcm, 2, min, na.rm = TRUE) # 每列的最小值
-
 # 保存 genenames, cellnames, geneCount, cellCount, reads_max_cell 和 reads_min_cell 到一个 RData 文件中
 save(genenames, cellnames, geneCount, cellCount, reads_max_cell, reads_min_cell, file = paste(tmp, "/original.RData", sep = ""))
-
 # 最大最小值归一化
-gcm_n <- t(apply(gcm, 1, function(x) (x - reads_min_cell) / (reads_max_cell - reads_min_cell)))
-		 
+gcm_n <- t(apply(gcm, 1, function(x) {
+  # 标准的最大最小值归一化
+  normalized_x <- (x - reads_min_cell) / (reads_max_cell - reads_min_cell)
+  # 找出最大值和最小值相等且都为-1的列
+  special_case_indices <- (reads_max_cell == reads_min_cell) & (reads_max_cell == -1)
+  # 对于这些列，归一化值设为0
+  normalized_x[, special_case_indices] <- 0
+  return(normalized_x)
+}))
+
 # 设置随机种子，确保结果可重现
 set.seed(100)
+
 
 # set.seed(100)
 #process the label
