@@ -97,6 +97,7 @@ if(is.null(label) || is.na(label)){## if no label file provided, then run pre-cl
   cls.factor = factor(cls[,1])
   ncls = length(levels(cls.factor))
 }
+# 覆盖式写入数据
 write(fig_h, paste(tmp,"/args",sep = ""), append =F)
 write(ncls, paste(tmp,"/args",sep = ""), append =T)
 write(label, paste(tmp,"/args",sep = ""), append =T)
