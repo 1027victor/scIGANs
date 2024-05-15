@@ -10,7 +10,7 @@ load(paste(tmp,"/original.RData", sep = ""))
 file = paste(tmp,"/scIGANs-", job_name,".csv", sep = "")
 
 d <- fread(file, header = T)
-# gcm 行是基因，列是细胞
+# gcm 行是细胞，列是基因
 gcm <- d[,-1]*reads_max_cell
 
 gcm_out <- cbind(Gene_ID = genenames, t(gcm[,1:geneCount]))
