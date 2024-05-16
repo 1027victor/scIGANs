@@ -6,7 +6,7 @@ tmp = args[2]
 outdir = args[3]
 timestamp = args[4]
 library(data.table)
-# load(paste(tmp,"/original.RData", sep = ""))
+load(paste(tmp,"/original.RData", sep = ""))
 file = paste(tmp,"/scIGANs-", job_name,".csv", sep = "")
 
 d <- fread(file, header = T)
