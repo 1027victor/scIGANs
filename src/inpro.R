@@ -81,10 +81,6 @@ save(genenames, cellnames, geneCount, cellCount, reads_max_cell, reads_min_cell,
 gcm_n <- t(apply(gcm, 1, function(x) {
   # 标准的最大最小值归一化
   normalized_x <- (x - reads_min_cell) / (reads_max_cell - reads_min_cell)
-  # 找出最大值和最小值相等且都为-1的列
-  special_case_indices <- (reads_max_cell == reads_min_cell) & (reads_max_cell == -1)
-  # 对于这些列，归一化值设为0
-  normalized_x[, special_case_indices] <- 0
   return(normalized_x)
 }))
 
