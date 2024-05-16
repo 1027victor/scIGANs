@@ -83,7 +83,7 @@ save(genenames, cellnames, geneCount, cellCount, file = paste(tmp, "/original.RD
 #   normalized_x <- (x - reads_min_cell) / (reads_max_cell - reads_min_cell)
 #   return(normalized_x)
 # }))
-
+gcm_n <- t(gcm)
 # 设置随机种子，确保结果可重现
 set.seed(100)
 
