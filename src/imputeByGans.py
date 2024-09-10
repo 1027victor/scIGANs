@@ -255,6 +255,7 @@ class Discriminator(nn.Module):
             nn.MaxPool2d(2,2),
             nn.BatchNorm2d(4),
             nn.ReLU(),
+            # 二维卷积 输入通道数 输出通道数 卷积核大小 步长 padding 
             nn.Conv2d(4, opt.channels, 2, 1, 0),
             nn.Sigmoid(),
         )
@@ -380,6 +381,7 @@ if opt.train:
             z = Variable(Tensor(np.random.normal(0, 1, (imgs.shape[0], opt.latent_dim))))
     
             # Generate a batch of images
+            
             gen_imgs = generator(z,label_oh)
     
             # Loss measures generator's ability to fool the discriminator
@@ -395,6 +397,7 @@ if opt.train:
             optimizer_D.zero_grad()
     
             # Measure discriminator's ability to classify real from generated samples
+            
             d_real = discriminator(real_imgs,label_oh)
             d_fake = discriminator(gen_imgs.detach(),label_oh)
     
