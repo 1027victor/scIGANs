@@ -467,9 +467,11 @@ if opt.impute:
 ######################################################
 ###        impute by type
 ######################################################
+    # sim_size (number of sim_imgs in each type)
     sim_size=opt.sim_size
     sim_out=list()
     for i in range(opt.ncls):
+        # 将不同的label标签值one-hot编码
         label_oh = one_hot(torch.from_numpy(np.repeat(i,sim_size)).type(torch.LongTensor),max_ncls).type(Tensor)
        
         # Sample noise as generator input
