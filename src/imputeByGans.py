@@ -119,6 +119,7 @@ class ToTensor(object):
                 }
 
 def one_hot(batch,depth):
+    # 创建一个对角线矩阵
     ones = torch.eye(depth)
     return ones.index_select(0,batch)
 
